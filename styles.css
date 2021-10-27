@@ -12,10 +12,13 @@ body {
 
 body {
   background-color: lemonchiffon;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 header {
-  margin: 5vh auto;
+  margin: 0 auto 5vh;
   text-align: center;
 }
 
@@ -25,9 +28,20 @@ main {
 }
 
 #game {
-  max-width: 750px;
-  max-height: 750px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 600px;
+  max-height: 600px;
   width: 80vw;
   height: 80vw;
   background-color: gold;
+  border: 2px solid midnightblue;
+}
+
+.grid-unit {
+  border: 1px solid midnightblue;
+  width: calc(100% / 3);
+  height: calc(100% / 3);
 }
