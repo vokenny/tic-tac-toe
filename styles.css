@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background-color: lemonchiffon;
+}
+
+header {
+  margin: 5vh auto;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+#game {
+  max-width: 750px;
+  max-height: 750px;
+  width: 80vw;
+  height: 80vw;
+  background-color: gold;
+}
