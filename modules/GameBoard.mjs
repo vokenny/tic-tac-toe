@@ -3,11 +3,14 @@ export const GameBoard = (function () {
 
   /* GameBoard manages the logic and state of the game */
 
-  let board = [...Array(3)].map(row => Array(3).fill('1'));
+  let board = [...Array(9)];
 
   const getBoard = () => board;
 
+  const updateBoard = (gridUnit, playerValue) => board[gridUnit.dataset.id] = playerValue;
+
   return {
-    getBoard
+    getBoard,
+    updateBoard
   };
 })();

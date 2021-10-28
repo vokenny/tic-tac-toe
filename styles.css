@@ -41,7 +41,26 @@ main {
 }
 
 .grid-unit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid midnightblue;
   width: calc(100% / 3);
   height: calc(100% / 3);
+}
+
+.player-icon {
+  width: 66%;
+  height: auto;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+footer > * {
+  margin: 0 auto;
+  text-align: center;
 }
