@@ -9,6 +9,7 @@ export const GameController = (function () {
   */
 
   const game = document.querySelector('#game');
+  const results = document.querySelector('#results');
 
   const getItems = () => GameBoard.getItems();
 
@@ -29,7 +30,7 @@ export const GameController = (function () {
   const displayBoard = () => game.append(...createGridUnits());
 
   // TODO
-  const showResults = () => {}
+  const showResults = () => { }
 
   const select = (gridUnit, playerValue, callback) => {
     // Only mark a unit if it's not already taken

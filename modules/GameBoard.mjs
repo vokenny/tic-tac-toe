@@ -14,7 +14,7 @@ export const GameBoard = (function () {
     }
   }
 
-  const winPositions = [
+  const winCombinations = [
     [0, 1, 2], // Horiz
     [3, 4, 5], // Horiz
     [6, 7, 8], // Horiz
@@ -39,8 +39,8 @@ export const GameBoard = (function () {
   }
 
   const checkWinner = (playerValue) => {
-    const hasThreeInARow = winPositions.some(positions => {
-      positions.every(unit => board[unit] === playerValue);
+    const hasThreeInARow = winCombinations.some(positions => {
+      return positions.every(position => board[position] === playerValue);
     });
 
     hasWinner = hasThreeInARow;
