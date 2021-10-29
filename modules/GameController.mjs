@@ -8,7 +8,6 @@ export const GameController = (function () {
     - GameController triggers GameBoard logic and state changes
   */
 
-  /* DOCUMENT SELECTORS */
   const game = document.querySelector('#game');
 
   const getItems = () => GameBoard.getItems();
@@ -29,6 +28,9 @@ export const GameController = (function () {
 
   const displayBoard = () => game.append(...createGridUnits());
 
+  // TODO
+  const showResults = () => {}
+
   const select = (gridUnit, playerValue, callback) => {
     // Only mark a unit if it's not already taken
     // .nodeName check is in case they click on the img on top of the div
@@ -37,7 +39,8 @@ export const GameController = (function () {
       gridUnit.innerHTML = playerValue === ITEMS.SWORD.value ? ITEMS.SWORD.icon : ITEMS.SHIELD.icon;
 
       GameBoard.updateBoard(gridUnit, playerValue);
-      callback();
+
+      GameBoard.hasWinner ? showResults() : callback();
     }
   }
 

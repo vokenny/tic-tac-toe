@@ -1,12 +1,10 @@
 import { GameController } from './modules/GameController.mjs';
 
 /*
+  - Creating Players
   - Setting event listeners, which should trigger methods on GameController
-  - Should not talk to GameBoard directly for logic or state
+  - Does not talk to GameBoard directly for logic or state
 */
-
-/* DOCUMENT SELECTORS */
-const gridUnits = () => document.querySelectorAll('.grid-unit');
 
 const PlayerFactory = item => {
   const value = item;
@@ -27,6 +25,7 @@ const changeCurrentPlayer = () => currentPlayer = currentPlayer === SwordPlayer 
 
 GameController.displayBoard();
 
+const gridUnits = () => document.querySelectorAll('.grid-unit');
 gridUnits().forEach(unit => unit.addEventListener('click', (evt) => {
   currentPlayer.select(evt, changeCurrentPlayer)
 }));
