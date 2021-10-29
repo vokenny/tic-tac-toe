@@ -8,12 +8,10 @@ export const GameController = (function () {
     - GameController triggers GameBoard logic and state changes
   */
 
-  /* Sword and Shield icons */
-  const SWORD_ICON = '<img src="./assets/swords.png" alt="Sword icon" class="player-icon">';
-  const SHIELD_ICON = '<img src="./assets/shield.png" alt="Shield icon" class="player-icon">';
-
   /* DOCUMENT SELECTORS */
   const game = document.querySelector('#game');
+
+  const getItems = () => GameBoard.getItems();
 
   function createGridUnits() {
     function createGridUnit(idx) {
@@ -35,13 +33,16 @@ export const GameController = (function () {
     // Only mark a unit if it's not already taken
     // .nodeName check is in case they click on the img on top of the div
     if (!gridUnit.innerHTML && gridUnit.nodeName === 'DIV') {
-      gridUnit.innerHTML = playerValue === 'Sword' ? SWORD_ICON : SHIELD_ICON;
+      const ITEMS = getItems();
+      gridUnit.innerHTML = playerValue === ITEMS.SWORD.value ? ITEMS.SWORD.icon : ITEMS.SHIELD.icon;
+
       GameBoard.updateBoard(gridUnit, playerValue);
       callback();
     }
   }
 
   return {
+    getItems,
     displayBoard,
     select
   }

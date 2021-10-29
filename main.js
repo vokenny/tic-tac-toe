@@ -8,8 +8,8 @@ import { GameController } from './modules/GameController.mjs';
 /* DOCUMENT SELECTORS */
 const gridUnits = () => document.querySelectorAll('.grid-unit');
 
-const PlayerFactory = mode => {
-  const value = mode;
+const PlayerFactory = item => {
+  const value = item;
   const select = (evt, callback) => GameController.select(evt.target, value, callback);
 
   return {
@@ -17,8 +17,9 @@ const PlayerFactory = mode => {
   };
 }
 
-const SwordPlayer = PlayerFactory('Sword');
-const ShieldPlayer = PlayerFactory('Shield');
+const ITEMS = GameController.getItems();
+const SwordPlayer = PlayerFactory(ITEMS.SWORD.value);
+const ShieldPlayer = PlayerFactory(ITEMS.SHIELD.value);
 
 let currentPlayer = SwordPlayer;
 
