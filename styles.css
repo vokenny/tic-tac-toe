@@ -54,6 +54,24 @@ main {
   height: auto;
 }
 
+#results {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blue(3px);
+}
+
+.hidden {
+  display: none !important;
+}
+
 footer {
   width: 100%;
   position: fixed;

@@ -29,8 +29,10 @@ export const GameController = (function () {
 
   const displayBoard = () => game.append(...createGridUnits());
 
-  // TODO
-  const showResults = () => { }
+  const showResults = (playerValue) => {
+    results.classList.remove('hidden');
+    results.innerHTML = `<h1>${playerValue} wins!</h1>`;
+  }
 
   const select = (gridUnit, playerValue, callback) => {
     // Only mark a unit if it's not already taken
@@ -41,7 +43,7 @@ export const GameController = (function () {
 
       GameBoard.updateBoard(gridUnit, playerValue);
 
-      GameBoard.hasWinner ? showResults() : callback();
+      GameBoard.getHasWinner() ? showResults(playerValue) : callback();
     }
   }
 

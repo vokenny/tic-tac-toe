@@ -5,11 +5,11 @@ export const GameBoard = (function () {
 
   const ITEMS = {
     SWORD: {
-      value: 'sword',
+      value: 'Sword',
       icon: '<img src="./assets/swords.png" alt="Sword icon" class="player-icon">'
     },
     SHIELD: {
-      value: 'shield',
+      value: 'Shield',
       icon: '<img src="./assets/shield.png" alt="Shield icon" class="player-icon">'
     }
   }
@@ -46,10 +46,12 @@ export const GameBoard = (function () {
     hasWinner = hasThreeInARow;
   }
 
+  const getHasWinner = () => hasWinner;
+
   return {
     getItems,
     getBoard,
     updateBoard,
-    hasWinner
+    getHasWinner
   };
 })();
