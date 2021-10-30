@@ -38,6 +38,7 @@ export const GameBoard = (function () {
     checkWinner(playerValue);
   }
 
+  // TODO - change to win state obj enums for win/draw
   const checkWinner = (playerValue) => {
     const hasThreeInARow = winCombinations.some(positions => {
       return positions.every(position => board[position] === playerValue);
