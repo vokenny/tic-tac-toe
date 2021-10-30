@@ -10,6 +10,14 @@ export const GameController = (function () {
 
   const game = document.querySelector('#game');
   const results = document.querySelector('#results');
+  const getGridUnits = () => document.querySelectorAll('.grid-unit');
+
+  const RESULTS_TEMPLATE = (winner) => {
+    return `
+      <h1>${winner} wins!</h1>
+      <button id="restart">Restart</button>
+    `;
+  }
 
   const getItems = () => GameBoard.getItems();
 
@@ -29,9 +37,19 @@ export const GameController = (function () {
 
   const displayBoard = () => game.append(...createGridUnits());
 
+  // TODO
+  const clearBoard = () => { }
+
   const showResults = (playerValue) => {
     results.classList.remove('hidden');
-    results.innerHTML = `<h1>${playerValue} wins!</h1>`;
+    results.innerHTML = RESULTS_TEMPLATE(playerValue);
+  }
+
+  // TODO
+  const hideResults = () => {
+    results.classList.add('hidden');
+    results.innerHTML = '';
+
   }
 
   const select = (gridUnit, playerValue, callback) => {
@@ -47,9 +65,17 @@ export const GameController = (function () {
     }
   }
 
+  const restart = () => {
+    GameBoard.restart();
+    clearBoard();
+    hideResults();
+  }
+
   return {
+    getGridUnits,
     getItems,
     displayBoard,
-    select
+    select,
+    restart
   }
 })();

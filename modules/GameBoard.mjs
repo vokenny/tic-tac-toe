@@ -48,6 +48,9 @@ export const GameBoard = (function () {
 
   const getHasWinner = () => hasWinner;
 
+  // TODO
+  const restart = () => { }
+
   return {
     getItems,
     getBoard,
