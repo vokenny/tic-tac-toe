@@ -2,7 +2,7 @@ import { GameController } from './modules/GameController.mjs';
 
 /*
   - Creating Players
-  - Trigger methods on GameController
+  - Trigger methods on GameController to affect logic and state
   - Does not talk to GameBoard directly for logic or state
 */
 

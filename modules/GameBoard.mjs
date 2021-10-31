@@ -26,11 +26,9 @@ export const GameBoard = (function () {
   ]
 
   let board = [...Array(9)];
-
   let hasWinner = false;
 
   const getItems = () => ITEMS;
-
   const getBoard = () => board;
 
   const updateBoard = (gridUnit, playerValue) => {
@@ -49,13 +47,16 @@ export const GameBoard = (function () {
 
   const getHasWinner = () => hasWinner;
 
-  // TODO
-  const restart = () => { }
+  const restart = () => {
+    board = [...Array(9)];
+    hasWinner = false;
+  }
 
   return {
     getItems,
     getBoard,
     updateBoard,
-    getHasWinner
+    getHasWinner,
+    restart
   };
 })();

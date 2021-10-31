@@ -1,5 +1,5 @@
 :root {
-  --primary: #fdc0c0;
+  --accent: #fdc0c0;
 }
 
 * {
@@ -32,7 +32,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--primary);
+  color: var(--accent);
 }
 
 header {
@@ -55,7 +55,7 @@ main {
   max-height: 600px;
   width: 80vw;
   height: 80vw;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--accent);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -64,9 +64,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--primary);
+  border: 1px solid var(--accent);
   width: calc(100% / 3);
   height: calc(100% / 3);
+}
+
+.grid-unit:hover {
+  background-color: #6f0000;
 }
 
 #game:hover {
@@ -130,5 +134,5 @@ footer > * {
 }
 
 a {
-  color: var(--primary);
+  color: var(--accent);
 }
