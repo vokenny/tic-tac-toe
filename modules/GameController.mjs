@@ -12,13 +12,10 @@ export const GameController = (function () {
   */
 
   const PlayerFactory = item => {
-    const value = item;
     const getValue = () => item;
-    const select = (evt, callback) => GameController.select(evt.target, value, callback);
 
     return {
-      getValue,
-      select
+      getValue
     }
   }
 
@@ -78,9 +75,4 @@ export const GameController = (function () {
   }
 
   setUpGame(); // Runs immediately inside IIFE
-
-  return {
-    select,
-    restart
-  }
 })();
