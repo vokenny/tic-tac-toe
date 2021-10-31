@@ -26,11 +26,9 @@ export const GameBoard = (function () {
   ]
 
   let board = [...Array(9)];
-
   let hasWinner = false;
 
   const getItems = () => ITEMS;
-
   const getBoard = () => board;
 
   const updateBoard = (gridUnit, playerValue) => {
@@ -38,6 +36,7 @@ export const GameBoard = (function () {
     checkWinner(playerValue);
   }
 
+  // TODO - change to win state obj enums for win/draw
   const checkWinner = (playerValue) => {
     const hasThreeInARow = winCombinations.some(positions => {
       return positions.every(position => board[position] === playerValue);
@@ -48,10 +47,16 @@ export const GameBoard = (function () {
 
   const getHasWinner = () => hasWinner;
 
+  const restart = () => {
+    board = [...Array(9)];
+    hasWinner = false;
+  }
+
   return {
     getItems,
     getBoard,
     updateBoard,
-    getHasWinner
+    getHasWinner,
+    restart
   };
 })();

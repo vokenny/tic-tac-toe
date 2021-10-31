@@ -10,6 +10,15 @@ export const GameController = (function () {
 
   const game = document.querySelector('#game');
   const results = document.querySelector('#results');
+  const getRestartButton = () => document.querySelector('#restart');
+  const getGridUnits = () => document.querySelectorAll('.grid-unit');
+
+  const RESULTS_TEMPLATE = (winner) => {
+    return `
+      <h1>${winner} wins!</h1>
+      <button id="restart">Restart</button>
+    `;
+  }
 
   const getItems = () => GameBoard.getItems();
 
@@ -23,15 +32,22 @@ export const GameController = (function () {
     }
 
     const gridUnits = GameBoard.getBoard().map((_, idx) => createGridUnit(idx));
-
     return gridUnits;
   }
 
   const displayBoard = () => game.append(...createGridUnits());
+  const clearBoard = () => getGridUnits().forEach(unit => unit.innerHTML = '');
 
   const showResults = (playerValue) => {
     results.classList.remove('hidden');
-    results.innerHTML = `<h1>${playerValue} wins!</h1>`;
+    results.innerHTML = RESULTS_TEMPLATE(playerValue);
+
+    getRestartButton().addEventListener('click', GameController.restart);
+  }
+
+  const hideResults = () => {
+    results.classList.add('hidden');
+    results.innerHTML = '';
   }
 
   const select = (gridUnit, playerValue, callback) => {
@@ -47,9 +63,17 @@ export const GameController = (function () {
     }
   }
 
+  const restart = () => {
+    GameBoard.restart();
+    clearBoard();
+    hideResults();
+  }
+
   return {
+    getGridUnits,
     getItems,
     displayBoard,
-    select
+    select,
+    restart
   }
 })();
