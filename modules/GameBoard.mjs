@@ -1,7 +1,7 @@
 export const GameBoard = (function () {
   'use strict';
 
-  /* GameBoard manages the state of the game */
+  /* GameBoard manages the state of the board */
 
   const ITEMS = {
     SWORD: {
@@ -33,13 +33,15 @@ export const GameBoard = (function () {
   const getBoard = () => board;
   const getBoardIsFull = () => boardIsFull;
 
-  const updateBoard = (gridUnit, playerValue) => {
+  const updateBoard = (gridUnit, player) => {
+    const playerValue = player.getValue();
     board[gridUnit.dataset.id] = playerValue;
-    checkWinner(playerValue);
+    checkWinner(player);
     checkBoardIsFull();
   }
 
-  const checkWinner = (playerValue) => {
+  const checkWinner = (player) => {
+    const playerValue = player.getValue();
     const hasThreeInARow = winCombinations.some(positions => {
       return positions.every(position => board[position] === playerValue);
     });
