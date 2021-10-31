@@ -56,6 +56,7 @@ export const GameBoard = (function () {
   const restart = () => {
     board = [...Array(9)];
     hasWinner = false;
+    boardIsFull = false;
   }
 
   return {

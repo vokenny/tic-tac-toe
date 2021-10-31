@@ -7,7 +7,7 @@ export const GameController = (function () {
   /* 
     - Creates Players
     - Manages the game logic
-    - Triggers presentation changes in Display Controller
+    - Triggers presentation changes in DisplayController
     - Triggers state changes in GameBoard
   */
 
@@ -74,6 +74,7 @@ export const GameController = (function () {
     GameBoard.restart();
     DisplayController.clearBoard();
     DisplayController.hideResults();
+    activePlayer = SwordPlayer;
   }
 
   setUpGame(); // Runs immediately inside IIFE
