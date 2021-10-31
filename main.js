@@ -8,11 +8,13 @@ import { GameController } from './modules/GameController.mjs';
 
 const PlayerFactory = item => {
   const value = item;
+  const getValue = () => item;
   const select = (evt, callback) => GameController.select(evt.target, value, callback);
 
   return {
+    getValue,
     select
-  };
+  }
 }
 
 const ITEMS = GameController.getItems();
@@ -23,7 +25,7 @@ let activePlayer = SwordPlayer;
 
 const changeCurrentPlayer = () => activePlayer = activePlayer === SwordPlayer ? ShieldPlayer : SwordPlayer;
 
-GameController.displayBoard();
+GameController.setUpGame(activePlayer);
 
 GameController.getGridUnits().forEach(unit => unit.addEventListener('click', (evt) => {
   activePlayer.select(evt, changeCurrentPlayer);

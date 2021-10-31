@@ -1,7 +1,7 @@
 export const GameBoard = (function () {
   'use strict';
 
-  /* GameBoard manages the logic and state of the game */
+  /* GameBoard manages the state of the game */
 
   const ITEMS = {
     SWORD: {

@@ -4,11 +4,12 @@ export const GameController = (function () {
   'use strict';
 
   /* 
-    - Manages presentation logic
-    - GameController triggers GameBoard logic and state changes
+    - GameController triggers GameBoard state changes
+    - Manages presentation logic based on the GameBoard state changes
   */
 
   const game = document.querySelector('#game');
+  const activePlayerReadout = document.querySelector('#active-player');
   const results = document.querySelector('#results');
   const getRestartButton = () => document.querySelector('#restart');
   const getGridUnits = () => document.querySelectorAll('.grid-unit');
@@ -30,6 +31,11 @@ export const GameController = (function () {
 
     const gridUnits = GameBoard.getBoard().map((_, idx) => createGridUnit(idx));
     return gridUnits;
+  }
+
+  const setUpGame = (activePlayer) => {
+    activePlayerReadout.textContent = activePlayer.getValue() + "'s turn";
+    displayBoard();
   }
 
   const displayBoard = () => game.append(...createGridUnits());
@@ -56,7 +62,14 @@ export const GameController = (function () {
 
       GameBoard.updateBoard(gridUnit, playerValue);
 
-      if (!hasGameEnded(playerValue)) callback();
+      if (!hasGameEnded(playerValue)) {
+        activePlayerReadout.textContent = (playerValue === ITEMS.SWORD.value
+          ? ITEMS.SHIELD.value
+          : ITEMS.SWORD.value)
+          + "'s turn";
+
+        callback();
+      }
     }
   }
 
@@ -83,7 +96,7 @@ export const GameController = (function () {
   return {
     getGridUnits,
     getItems,
-    displayBoard,
+    setUpGame,
     select,
     restart
   }

@@ -37,13 +37,23 @@ body {
 
 header {
   font-size: 2em;
-  margin: 0 auto 3vh;
   text-align: center;
+}
+
+.header.player-icon {
+  height: 1em;
+  width: auto;
 }
 
 main {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+#active-player {
+  width: 100%;
+  text-align: center;
 }
 
 #game {
@@ -51,8 +61,8 @@ main {
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 540px;
+  max-height: 540px;
   width: 80vw;
   height: 80vw;
   border: 2px solid var(--accent);
