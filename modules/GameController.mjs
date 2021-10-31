@@ -13,12 +13,9 @@ export const GameController = (function () {
   const getRestartButton = () => document.querySelector('#restart');
   const getGridUnits = () => document.querySelectorAll('.grid-unit');
 
-  const RESULTS_TEMPLATE = (winner) => {
-    return `
-      <h1>${winner} wins!</h1>
-      <button id="restart">Restart</button>
-    `;
-  }
+  const RESTART_TEMPLATE = `<button id="restart">Restart</button>`;
+  const DRAW_TEMPLATE = `<h1>IT'S A DRAW!</h1> ${RESTART_TEMPLATE}`;
+  const WIN_TEMPLATE = (winner) => `<h1>${winner} wins!</h1> ${RESTART_TEMPLATE}`;
 
   const getItems = () => GameBoard.getItems();
 
@@ -40,7 +37,7 @@ export const GameController = (function () {
 
   const showResults = (playerValue) => {
     results.classList.remove('hidden');
-    results.innerHTML = RESULTS_TEMPLATE(playerValue);
+    results.innerHTML = playerValue ? WIN_TEMPLATE(playerValue) : DRAW_TEMPLATE;
 
     getRestartButton().addEventListener('click', GameController.restart);
   }
@@ -59,8 +56,22 @@ export const GameController = (function () {
 
       GameBoard.updateBoard(gridUnit, playerValue);
 
-      GameBoard.getHasWinner() ? showResults(playerValue) : callback();
+      if (!hasGameEnded(playerValue)) callback();
     }
+  }
+
+  const hasGameEnded = (playerValue) => {
+    if (GameBoard.getHasWinner()) {
+      showResults(playerValue);
+      return true;
+    }
+
+    if (GameBoard.getBoardIsFull()) {
+      GameBoard.getHasWinner() ? showResults(playerValue) : showResults();
+      return true;
+    }
+
+    return false;
   }
 
   const restart = () => {

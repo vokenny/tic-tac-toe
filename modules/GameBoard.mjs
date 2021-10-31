@@ -5,11 +5,11 @@ export const GameBoard = (function () {
 
   const ITEMS = {
     SWORD: {
-      value: 'Sword',
+      value: 'SWORD',
       icon: '<img src="./assets/swords.png" alt="Sword icon" class="player-icon">'
     },
     SHIELD: {
-      value: 'Shield',
+      value: 'SHIELD',
       icon: '<img src="./assets/shield.png" alt="Shield icon" class="player-icon">'
     }
   }
@@ -27,16 +27,18 @@ export const GameBoard = (function () {
 
   let board = [...Array(9)];
   let hasWinner = false;
+  let boardIsFull = false;
 
   const getItems = () => ITEMS;
   const getBoard = () => board;
+  const getBoardIsFull = () => boardIsFull;
 
   const updateBoard = (gridUnit, playerValue) => {
     board[gridUnit.dataset.id] = playerValue;
     checkWinner(playerValue);
+    checkBoardIsFull();
   }
 
-  // TODO - change to win state obj enums for win/draw
   const checkWinner = (playerValue) => {
     const hasThreeInARow = winCombinations.some(positions => {
       return positions.every(position => board[position] === playerValue);
@@ -44,6 +46,8 @@ export const GameBoard = (function () {
 
     hasWinner = hasThreeInARow;
   }
+
+  const checkBoardIsFull = () => boardIsFull = board.every(position => position);
 
   const getHasWinner = () => hasWinner;
 
@@ -55,6 +59,7 @@ export const GameBoard = (function () {
   return {
     getItems,
     getBoard,
+    getBoardIsFull,
     updateBoard,
     getHasWinner,
     restart
