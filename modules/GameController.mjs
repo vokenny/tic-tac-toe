@@ -33,6 +33,7 @@ export const GameController = (function () {
   const setUpGame = () => {
     DisplayController.updateActivePlayerReadout(activePlayer);
     DisplayController.createBoard();
+    DisplayController.getGridUnits().forEach(unit => unit.addEventListener('click', select));
   }
 
   const select = (evt) => {
@@ -56,11 +57,13 @@ export const GameController = (function () {
   const hasGameEnded = (player) => {
     if (GameBoard.getHasWinner()) {
       DisplayController.showResults(player);
+      DisplayController.getRestartButton().addEventListener('click', restart);
       return true;
     }
 
     if (GameBoard.getBoardIsFull()) {
       GameBoard.getHasWinner() ? DisplayController.showResults(player) : DisplayController.showResults();
+      DisplayController.getRestartButton().addEventListener('click', restart);
       return true;
     }
 
@@ -73,8 +76,9 @@ export const GameController = (function () {
     DisplayController.hideResults();
   }
 
+  setUpGame(); // Runs immediately inside IIFE
+
   return {
-    setUpGame,
     select,
     restart
   }

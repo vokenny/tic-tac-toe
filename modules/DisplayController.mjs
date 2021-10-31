@@ -1,5 +1,4 @@
 import { GameBoard } from "./GameBoard.mjs";
-import { GameController } from "./GameController.mjs";
 
 export const DisplayController = (function () {
   'use strict';
@@ -34,18 +33,14 @@ export const DisplayController = (function () {
 
   const updateActivePlayerReadout = (activePlayer) => activePlayerReadout.textContent = activePlayer.getValue() + "'s turn";
 
-  const createBoard = () => {
-    game.append(...createGridUnits());
-    getGridUnits().forEach(unit => unit.addEventListener('click', GameController.select));
-  };
+  const createBoard = () => game.append(...createGridUnits());
 
   const clearBoard = () => getGridUnits().forEach(unit => unit.innerHTML = '');
 
-  const showResults = (playerValue) => {
+  const showResults = (player) => {
+    const playerValue = player?.getValue();
     results.classList.remove('hidden');
     results.innerHTML = playerValue ? WIN_TEMPLATE(playerValue) : DRAW_TEMPLATE;
-
-    getRestartButton().addEventListener('click', GameController.restart);
   }
 
   const hideResults = () => {
@@ -54,6 +49,8 @@ export const DisplayController = (function () {
   }
 
   return {
+    getRestartButton,
+    getGridUnits,
     updateActivePlayerReadout,
     createBoard,
     clearBoard,
