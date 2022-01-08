@@ -111,6 +111,10 @@ main {
   -webkit-backdrop-filter: blue(3px);
 }
 
+.result-heading {
+  text-align: center;
+}
+
 #restart {
   font-size: 0.7em;
   padding: 10px 20px;

@@ -15,8 +15,8 @@ export const DisplayController = (function () {
   const getGridUnits = () => document.querySelectorAll('.grid-unit');
 
   const RESTART_TEMPLATE = `<button id="restart">Restart</button>`;
-  const DRAW_TEMPLATE = `<h1>IT'S A DRAW!</h1> ${RESTART_TEMPLATE}`;
-  const WIN_TEMPLATE = (winner) => `<h1>${winner} wins!</h1> ${RESTART_TEMPLATE}`;
+  const DRAW_TEMPLATE = `<h1 class="result-heading">IT'S A DRAW!</h1> ${RESTART_TEMPLATE}`;
+  const WIN_TEMPLATE = (winner) => `<h1 class="result-heading">${winner} wins!</h1> ${RESTART_TEMPLATE}`;
 
   function createGridUnits() {
     function createGridUnit(idx) {
